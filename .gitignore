@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.py[cod]
+
+# Runtime data
+/backend/config.json
+/backend/logs/
+/config.json
+
+# Local environment and editor files
+.env
+.env.*
+.vscode/

@@ -1,0 +1,15 @@
+flask
+flask-socketio
+flask-cors
+opencv-python
+eventlet
+pyautogui
+mediapipe
+numpy
+sounddevice
+faster-whisper
+pyttsx3
+pypiwin32
+screen-brightness-control
+wmi
+
