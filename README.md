@@ -170,6 +170,4 @@ Configuration parameters are stored in `backend/config.json`. Key configuration 
 
 ---
 
-## License & Attribution
 
-Developed for research and assistive technology human-computer interaction (HCI).
