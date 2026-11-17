@@ -1,174 +1,175 @@
 # A Confidence-Weighted, Adaptive Multimodal Framework for Offline Voice-Gesture Assistive HCI
 
-This project is an offline, assistive human-computer interaction system designed to help users control a computer using hand gestures and voice commands without a keyboard or mouse. It is intended for accessibility-focused use cases where users may have limited mobility or prefer hands-free interaction.
+This project is an offline, assistive human-computer interaction (HCI) framework designed to help users control a computer using hand gestures and voice commands without a physical keyboard or mouse. It is intended for accessibility-focused use cases where users may have limited mobility or prefer hands-free interaction.
 
 The system combines:
 
-- gesture recognition from a webcam using MediaPipe
-- speech recognition from the microphone using Whisper
-- action execution via PyAutoGUI and system commands
-- confidence-based arbitration when gesture and voice inputs occur together
-- a browser-based control panel for configuration and training
+- **Gesture recognition** from a webcam using MediaPipe
+- **Speech recognition** from the microphone using faster-whisper
+- **Action execution** via PyAutoGUI and system commands
+- **Confidence-weighted modality fusion** with adaptive thresholding when gesture and voice inputs co-occur
+- **Browser-based control panel** for real-time monitoring, gesture training, and configuration
 
-## Project overview
+---
 
-The project is split into two main parts:
+## Project Overview
 
-- `backend/` contains the Flask server, recognition logic, fusion logic, and action execution modules
-- `frontend/` contains the browser UI, CSS, JavaScript, and model assets
+The project is split into two primary components:
 
-Recognition and command execution run locally. On first startup, faster-whisper may need an internet connection to download its selected speech model; later runs can use the cached model offline.
+- `backend/` contains the Flask + Socket.IO server, recognition logic, multimodal fusion engine, and action execution modules.
+- `frontend/` contains the browser UI, styling, client-side scripts, and MediaPipe model assets.
 
-## Key features
+The application runs locally on the host machine, ensuring low latency, privacy, and full offline operation without requiring cloud API calls.
 
-- Offline gesture control using webcam input
-- Offline voice command recognition using Whisper
-- Real-time control through a Flask + SocketIO backend
-- Custom gesture training and saved gesture templates
-- Adaptive custom gesture thresholds that improve over time
-- Confidence-weighted fusion between gesture and voice modalities
-- Action mapping for browsing, window control, media control, system access, and app launching
-- Browser-based UI for managing actions and configuration
+---
+
+## Key Features
+
+- **Offline Gesture Control**: Real-time hand landmark tracking and gesture recognition via MediaPipe.
+- **Offline Voice Recognition**: Local speech-to-command decoding powered by faster-whisper.
+- **Confidence-Weighted Multimodal Fusion**: Proposes actions from both channels within a sliding time window and resolves conflicts using confidence scoring.
+- **Adaptive Custom Gesture Learning**: Train custom hand gestures on the fly; landmark templates and dynamic thresholds adapt to individual user consistency.
+- **Comprehensive Action Mapping**: Controls mouse movement, clicks, scrolling, keyboard shortcuts, window management, media volume, screen brightness, and application launchers.
+- **Modern Interactive Dashboard**: Web-based interface for live camera preview, audio visualizer, real-time event logs, and settings configuration.
+
+---
 
 ## Architecture
 
-The application is organized as a local multimodal control system:
+```
+Webcam Input ───► MediaPipe Gesture Recognizer ───┐
+                                                  ▼
+                                         Modality Fusion Engine ──► Action Executor ──► OS / Desktop
+                                                  ▲
+Microphone   ───► faster-whisper Voice Engine  ───┘
+```
 
-1. Camera input is processed by the gesture recognizer.
-2. Microphone input is processed by the voice recognizer.
-3. The backend coordinates both inputs and maps them to actions.
-4. The action executor performs the actual system operation.
-5. When gesture and voice commands happen close together, the fusion module decides which one should run.
+1. **Camera Stream**: Processed in real time by the gesture recognizer to identify standard and custom gestures.
+2. **Audio Stream**: Segmented and transcribed locally by faster-whisper to detect mapped command phrases.
+3. **Multimodal Fusion**: Compares gesture and voice proposals within a configurable time window (`fusion_window`), computing confidence scores to arbitrate or trigger complementary actions.
+4. **Action Executor**: Simulates mouse clicks, keystrokes, window operations, and system utilities.
 
-## Technology stack
+---
 
-- Backend: Flask, Flask-SocketIO, Flask-CORS, Eventlet
-- Gesture recognition: OpenCV, MediaPipe, NumPy
-- Voice recognition: faster-whisper, SoundDevice
-- System control: PyAutoGUI, pyttsx3, subprocess, os
-- Frontend: HTML, CSS, JavaScript
-- Model assets: MediaPipe gesture model; faster-whisper downloads and caches its speech model when needed
+## Technology Stack
 
-## Project structure
+- **Backend Framework**: Python 3.10+, Flask, Flask-SocketIO, Flask-CORS, Eventlet
+- **Computer Vision**: OpenCV, MediaPipe, NumPy
+- **Speech Recognition**: faster-whisper, SoundDevice
+- **Automation & OS Control**: PyAutoGUI, pyttsx3, screen-brightness-control
+- **Frontend**: HTML5, CSS3, JavaScript (WebSocket client)
+
+---
+
+## Project Structure
 
 ```text
-mini project (final code)/
 ├── backend/
-│   ├── app.py
-│   ├── action_executor.py
-│   ├── fusion.py
-│   ├── gesture_recognition.py
-│   ├── voice_recognition.py
-│   └── (config.json and logs/ are created at runtime)
+│   ├── app.py                     # Main server and coordination hub
+│   ├── action_executor.py         # OS automation & action execution
+│   ├── config.json                # Mappings, thresholds & gesture templates
+│   ├── fusion.py                  # Confidence-weighted multimodal fusion
+│   ├── gesture_recognition.py     # MediaPipe hand tracking & custom gesture matcher
+│   ├── voice_recognition.py       # faster-whisper audio processor
+│   └── logs/                      # Session activity & fusion logs (runtime)
 ├── frontend/
 │   ├── static/
 │   │   ├── css/
+│   │   │   └── style.css          # UI styles and dashboard themes
 │   │   ├── js/
+│   │   │   └── main.js            # Frontend WebSocket logic & UI controls
 │   │   └── models/
+│   │       └── gesture_recognizer.task # MediaPipe gesture model
 │   └── templates/
-│       └── index.html
-├── requirements.txt
-├── requirements-lock.txt
-├── .gitignore
-└── README.md
+│       └── index.html             # Dashboard interface
+├── requirements.txt               # Top-level dependencies
+├── requirements-lock.txt          # Pinned dependency versions
+├── .gitignore                     # Git ignore rules for venv, cache & logs
+└── README.md                      # Project documentation
 ```
 
-## Setup
+---
+
+## Setup & Installation
 
 ### Prerequisites
 
-- Python 3.10 or newer
-- A webcam and microphone connected to the machine
-- Windows/macOS/Linux environment compatible with the dependencies
+- Python 3.10, 3.11, or 3.12
+- Working webcam and microphone
+- Windows, macOS, or Linux (Windows recommended for full OS automation support)
 
-### Create and activate a virtual environment
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Dhanu1110/Dhanu1110-A-CONFIDENCE-WEIGHTED-ADAPTIVE-FRAMEWORK-FOR-OFFLINE-VOICE-GESTURE-ASSISTIVE-HCI.git
+cd Dhanu1110-A-CONFIDENCE-WEIGHTED-ADAPTIVE-FRAMEWORK-FOR-OFFLINE-VOICE-GESTURE-ASSISTIVE-HCI
+```
+
+### 2. Create and Activate a Virtual Environment
 
 ```bash
 python -m venv .venv
 
-# Windows
+# Windows (Command Prompt / PowerShell)
 .venv\Scripts\activate
 
-# macOS/Linux
+# macOS / Linux
 source .venv/bin/activate
 ```
 
-### Install dependencies
+### 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Run the application
+---
 
-From the project root, start the backend server:
+## Running the Application
+
+From the project root directory, run:
 
 ```bash
 python backend/app.py
 ```
 
-Then open the browser at:
+Then open your browser and navigate to:
 
 ```text
 http://127.0.0.1:5000
 ```
 
-If you prefer, you can also navigate into the backend folder and run:
+---
 
-```bash
-cd backend
-python app.py
-```
+## Supported Actions
 
-## What the system can do
+- **Mouse Control**: Cursor movement, left click, double click, right click, scroll up/down
+- **Keyboard Shortcuts**: Copy, paste, cut, undo, redo, save, Enter, Escape, Space
+- **Window Management**: Minimize window, maximize window, next tab, previous tab, new tab, close tab, switch window
+- **App Launching**: Browser, File Explorer, Notepad, Settings, Mail
+- **System Utilities**: Volume up/down/mute, brightness up/down, lock screen, screenshot, tell time/date, read screen
 
-The project supports actions such as:
-
-- mouse actions like click, double click, right click, scroll, and cursor movement
-- keyboard actions like copy, paste, cut, undo, redo, save, and text input
-- window actions like minimize, maximize, switch window, and open/close tabs
-- application control like opening browser, Notepad, file explorer, settings, and mail
-- system actions like volume adjustments, brightness control, locking the screen, shutdown, and reading time/date
-
-## Gesture and voice behavior
-
-### Gesture recognition
-
-The system uses MediaPipe to detect hand landmarks and classify gestures. It can recognize built-in gestures from the MediaPipe model and also learn custom gestures by averaging several saved landmark samples.
-
-Custom gestures are compared against stored templates using a normalized distance metric. The project also adapts the threshold per gesture based on recent successful matches, so a user’s consistent gesture performance can be recognized more precisely over time.
-
-### Voice recognition
-
-The voice module uses faster-whisper with a local microphone stream and audio segmentation. It listens for short spoken commands and normalizes them before matching them to configured actions. Commands are stored in the app configuration and can be mapped to actions from the web interface.
-
-### Modality fusion
-
-When both gesture and voice recognition are active at the same time, the project uses a confidence-weighted fusion mechanism. The fusion layer compares active proposals from both modalities within a short time window and chooses the higher-scoring action. This helps avoid duplicate or conflicting actions when a user gives multiple inputs at the same time.
+---
 
 ## Configuration
 
-The app's runtime settings are stored in `backend/config.json`. If the file does not exist, the application creates it with default settings when it starts.
+Configuration parameters are stored in `backend/config.json`. Key configuration sections include:
 
-This file contains:
+- **`settings`**: Camera index/resolution, cooldown timers, fusion window duration, modality weights, Whisper model size (`base.en`), energy thresholds.
+- **`gestures`**: Gesture-to-action bindings.
+- **`voice_commands`**: Spoken phrase-to-action bindings.
+- **`custom_gesture_data`**: Stored landmark coordinate templates for trained custom gestures.
 
-- camera settings
-- gesture and voice cooldown values
-- fusion parameters
-- mapping between recognized gestures/voice phrases and actions
-- stored custom gesture templates
+---
 
-## Notes
+## Notes & Troubleshooting
 
-- After the faster-whisper model has been downloaded or otherwise cached, recognition runs locally and can be used without an internet connection.
-- The project includes logging under `backend/logs/` for session activity and fusion decisions.
-- Runtime configuration and logs are excluded from version control because they may contain personal gesture data or local activity.
-- Some dependencies may require Windows-specific packages or environment settings depending on the machine.
+- **Offline Execution**: Once the Whisper model is downloaded on initial launch, speech recognition runs completely offline from local cache.
+- **Logs**: Detailed fusion and session telemetry are stored in `backend/logs/` in JSONL format for diagnostic and research evaluation.
+- **Permissions**: Ensure your terminal/Python process has accessibility and screen capture permissions on your operating system.
 
-## Intended use
+---
 
-This project is best understood as an accessibility and assistive-technology prototype for hands-free computer interaction. It is especially relevant for situations where a user needs to operate a computer without relying on traditional mouse and keyboard input.
+## License & Attribution
 
-## Summary
-
-This repository contains a complete local assistive HCI system that blends gesture and voice recognition with adaptive behavior, custom training, and action execution. It is a practical prototype for offline multimodal control in assistive computing scenarios.
+Developed for research and assistive technology human-computer interaction (HCI).

@@ -1,0 +1,365 @@
+{
+  "settings": {
+    "camera_index": 0,
+    "camera_width": 1119,
+    "camera_height": 993,
+    "gesture_cooldown": 0.1,
+    "voice_cooldown": 0.5,
+    "fusion_window": 1.0,
+    "gesture_weight": 1.0,
+    "voice_weight": 1.0,
+    "voice_sample_rate": 16000,
+    "whisper_model": "base.en",
+    "whisper_device": "cpu",
+    "whisper_compute_type": "int8",
+    "whisper_energy_threshold": 0.015,
+    "whisper_pause_threshold": 0.45,
+    "background_color": "#132058"
+  },
+  "gestures": {
+    "Index_Point": {
+      "name": "Index Finger Move Cursor",
+      "action": "move_cursor"
+    },
+    "Victory": {
+      "name": "Peace / Victory (2)",
+      "action": "right_click"
+    },
+    "Open_Palm": {
+      "name": "Open Palm / Stop",
+      "action": "maximize_window"
+    },
+    "Closed_Fist": {
+      "name": "Closed Fist",
+      "action": "minimize_window"
+    },
+    "Thumb_Up": {
+      "name": "Thumbs Up",
+      "action": "volume_up"
+    },
+    "Thumb_Down": {
+      "name": "Thumbs Down",
+      "action": "volume_down"
+    },
+    "Pointing_Up": {
+      "name": "Pointing (Toggle Cursor)",
+      "action": "toggle_cursor"
+    },
+    "notepad": {
+      "name": "notepad",
+      "action": "open_notepad"
+    },
+    "reverse victory": {
+      "name": "reverse victory",
+      "action": "previous_tab"
+    },
+    "3 FINGETR": {
+      "name": "3 FINGETR",
+      "action": "minimize_window"
+    }
+  },
+  "voice_commands": {
+    "click": {
+      "command": "click",
+      "action": "left_click"
+    },
+    "double_click": {
+      "command": "double click",
+      "action": "double_click"
+    },
+    "right_click": {
+      "command": "right click",
+      "action": "right_click"
+    },
+    "open_browser": {
+      "command": "open browser",
+      "action": "open_browser"
+    },
+    "close_browser": {
+      "command": "close browser",
+      "action": "close_browser"
+    },
+    "new_tab": {
+      "command": "new tab",
+      "action": "new_tab"
+    },
+    "close_tab": {
+      "command": "close tab",
+      "action": "close_tab"
+    },
+    "next_tab": {
+      "command": "next tab",
+      "action": "next_tab"
+    },
+    "previous_tab": {
+      "command": "previous tab",
+      "action": "previous_tab"
+    },
+    "scroll_up": {
+      "command": "scroll up",
+      "action": "scroll_up"
+    },
+    "scroll_down": {
+      "command": "scroll down",
+      "action": "scroll_down"
+    },
+    "zoom_in": {
+      "command": "zoom in",
+      "action": "zoom_in"
+    },
+    "zoom_out": {
+      "command": "zoom out",
+      "action": "zoom_out"
+    },
+    "refresh": {
+      "command": "refresh",
+      "action": "refresh"
+    },
+    "open_notepad": {
+      "command": "open notepad",
+      "action": "open_notepad"
+    },
+    "open_files": {
+      "command": "open files",
+      "action": "open_file_explorer"
+    },
+    "open_settings": {
+      "command": "open settings",
+      "action": "open_settings"
+    },
+    "minimize": {
+      "command": "minimize",
+      "action": "minimize_window"
+    },
+    "maximize": {
+      "command": "maximize",
+      "action": "maximize_window"
+    },
+    "lock_screen": {
+      "command": "lock screen",
+      "action": "lock_screen"
+    },
+    "volume_up": {
+      "command": "volume up",
+      "action": "volume_up"
+    },
+    "volume_down": {
+      "command": "volume down",
+      "action": "volume_down"
+    },
+    "mute": {
+      "command": "mute",
+      "action": "volume_mute"
+    },
+    "brightness_up": {
+      "command": "brightness up",
+      "action": "brightness_up"
+    },
+    "brightness_down": {
+      "command": "brightness down",
+      "action": "brightness_down"
+    },
+    "copy": {
+      "command": "copy",
+      "action": "copy"
+    },
+    "paste": {
+      "command": "paste",
+      "action": "paste"
+    },
+    "cut": {
+      "command": "cut",
+      "action": "cut"
+    },
+    "undo": {
+      "command": "undo",
+      "action": "undo"
+    },
+    "redo": {
+      "command": "redo",
+      "action": "redo"
+    },
+    "save": {
+      "command": "save",
+      "action": "save"
+    },
+    "screenshot": {
+      "command": "screenshot",
+      "action": "screenshot"
+    },
+    "press_enter": {
+      "command": "enter",
+      "action": "press_enter"
+    },
+    "press_escape": {
+      "command": "escape",
+      "action": "press_escape"
+    },
+    "press_space": {
+      "command": "space",
+      "action": "press_space"
+    },
+    "read_screen": {
+      "command": "read screen",
+      "action": "read_screen"
+    },
+    "open_mail": {
+      "command": "open mail",
+      "action": "open_mail"
+    },
+    "time": {
+      "command": "what time is it",
+      "action": "tell_time"
+    },
+    "date": {
+      "command": "what date is it",
+      "action": "tell_date"
+    },
+    "date_time": {
+      "command": "what date/time is it",
+      "action": "tell_date_time"
+    },
+    "shutdown": {
+      "command": "shutdown system",
+      "action": null
+    },
+    "restart": {
+      "command": "restart system",
+      "action": null
+    }
+  },
+  "custom_gesture_data": {
+    "notepad": [
+      0.0,
+      0.0,
+      -0.1921276907035033,
+      -0.09821781774617946,
+      -0.3692540738482132,
+      -0.2844463609734485,
+      -0.4922544554871265,
+      -0.44030139860735645,
+      -0.5015561508339726,
+      -0.6628220752755579,
+      -0.2982903399706217,
+      -0.901508698972551,
+      -0.37516297146098804,
+      -1.1712199910861725,
+      -0.43702824228932446,
+      -1.2515607699361895,
+      -0.48000180589079616,
+      -1.227684888749725,
+      -0.18675813238889652,
+      -0.982373540885302,
+      -0.23353676012933397,
+      -1.3164199273558557,
+      -0.28263753654089413,
+      -1.4347976026287972,
+      -0.3301711613404032,
+      -1.3965692128889635,
+      -0.061572254059140914,
+      -0.9785134915342024,
+      -0.07554894119111383,
+      -1.308001394464258,
+      -0.11859942244152827,
+      -1.4264672033016739,
+      -0.17241015780630126,
+      -1.4075444417789489,
+      0.06702847996333713,
+      -0.8926939895221729,
+      0.09029779562276567,
+      -1.1482843609015498,
+      0.05857440013218775,
+      -1.2687308672955246,
+      0.007852320976908722,
+      -1.3035946234153448
+    ],
+    "reverse victory": [
+      0.0,
+      0.0,
+      0.04647607802107019,
+      -0.5061101282383358,
+      -0.052745015148393894,
+      -0.8957895933775781,
+      -0.20858603923393965,
+      -1.0085612472757906,
+      -0.3469559721705274,
+      -0.9966411933285513,
+      -0.07032623915873197,
+      -1.0981770856255006,
+      -0.14261096471895887,
+      -1.6526835187679765,
+      -0.18516028043869195,
+      -1.982255593275619,
+      -0.22086583404844165,
+      -2.226481373694352,
+      -0.21934427798057496,
+      -0.9744900068741977,
+      -0.3931016640102786,
+      -1.5358182045608915,
+      -0.5036781797923613,
+      -1.8567244007332513,
+      -0.6006133438278135,
+      -2.084603104652007,
+      -0.3560673373883337,
+      -0.7746118431350304,
+      -0.5425754393064446,
+      -1.1182530611023898,
+      -0.4750232307567813,
+      -1.005561935193087,
+      -0.4045887231109216,
+      -0.8704369501422203,
+      -0.4568971457677592,
+      -0.5436235215263413,
+      -0.5514169504759587,
+      -0.7752459525042104,
+      -0.48376726878213744,
+      -0.7058593644307333,
+      -0.42034871719930433,
+      -0.6180956943927799
+    ],
+    "3 FINGETR": [
+      0.0,
+      0.0,
+      -0.17105373590075032,
+      -0.10337037183426957,
+      -0.339629174438416,
+      -0.30542588059442716,
+      -0.45484374608193295,
+      -0.4603605840240398,
+      -0.42701147023139596,
+      -0.6546184182598969,
+      -0.20413944525948374,
+      -0.8756510788019085,
+      -0.3122269629761762,
+      -1.0115620126236933,
+      -0.35150495017274025,
+      -0.776281727794119,
+      -0.3420650795207309,
+      -0.5348558917691323,
+      -0.09328012715092295,
+      -0.9955195342944163,
+      -0.18258751220982924,
+      -1.3902534294101467,
+      -0.2607129324833714,
+      -1.6379798194451327,
+      -0.3264223476857054,
+      -1.8773789161411687,
+      0.03593288540716081,
+      -0.9830568367301539,
+      0.030831256915076412,
+      -1.3960488997413,
+      0.005962329262104113,
+      -1.641669687776164,
+      -0.03796716455110918,
+      -1.868706845254357,
+      0.16399714655428946,
+      -0.8583907529264754,
+      0.21944487468403573,
+      -1.1407356677070566,
+      0.21340822550323454,
+      -1.329443835688372,
+      0.178811114001148,
+      -1.5093282924147657
+    ]
+  }
+}
